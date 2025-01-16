@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bokeh Visualization</title>
+    <!-- Include Bokeh JS -->
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.4.1.min.js"></script>
+    <script src="https://cdn.holoviz.org/panel/1.5.4/dist/panel.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bokeh.org/bokeh/release/bokeh-3.4.1.min.css">
+    <link rel="stylesheet" href="https://cdn.holoviz.org/panel/1.5.4/dist/panel.min.css">
+</head>
+<body>
+    <!-- Placeholder for the visualization -->
+    <div id="p1337">
+        <div id="e0767c80-ab5b-46f3-9b65-e6035e2f32f6" data-root-id="p1337" style="display: contents;"></div>
+    </div>
+    <script type="application/javascript">
+        (function(root) {
+            var docs_json = {"0477bb5e-e741-4b3c-af7f-f70f73f3adb4":{"version":"3.4.1","title":"Bokeh Application","roots":[{"type":"object","name":"Row","id":"p1337","attributes":{"name":"Row02226","tags":["embedded"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 400px));\n  -webkit-mask-size: auto calc(min(50%, 400px));\n}"],"min_width":800,"margin":0,"sizing_mode":"stretch_width","align":"start","children":[{"type":"object","name":"Spacer","id":"p1341","attributes":{"name":"HSpacer02232","margin":0,"sizing_mode":"stretch_width","align":"start"}},{"type":"object","name":"Figure","id":"p1380","attributes":{"width":800,"margin":[5,10],"sizing_mode":"fixed","align":"start"}}]}}]};
+
+            var render_items = [{"docid":"0477bb5e-e741-4b3c-af7f-f70f73f3adb4","roots":{"p1337":"e0767c80-ab5b-46f3-9b65-e6035e2f32f6"},"root_ids":["p1337"]}];
+            
+            var docs = Object.values(docs_json)
+            if (!docs) return;
+
+            async function embed_document(root) {
+                var Bokeh = get_bokeh(root)
+                await Bokeh.embed.embed_items_notebook(docs_json, render_items);
+            }
+
+            function get_bokeh(root) {
+                if (root.Bokeh === undefined) return null;
+                return root.Bokeh;
+            }
+
+            function is_loaded(root) {
+                var Bokeh = get_bokeh(root);
+                return (Bokeh != null && Bokeh.Panel !== undefined);
+            }
+
+            if (is_loaded(root)) {
+                embed_document(root);
+            } else {
+                var attempts = 0;
+                var timer = setInterval(function(root) {
+                    if (is_loaded(root)) {
+                        clearInterval(timer);
+                        embed_document(root);
+                    } else if (document.readyState == "complete") {
+                        attempts++;
+                        if (attempts > 200) clearInterval(timer);
+                    }
+                }, 25, root);
+            }
+        })(window);
+    </script>
+</body>
+</html>
